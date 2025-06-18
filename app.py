@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # --- Load the trained model ---
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "linear_regression_model_using_pickle.pkl")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "linear_regression_model_using_pickle .pkl")
 
 # Debug: Show current directory and files
 st.write("Current working directory:", os.getcwd())
