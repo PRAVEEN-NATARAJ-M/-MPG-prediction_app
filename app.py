@@ -2,14 +2,13 @@ import streamlit as st
 import pickle
 import numpy as np
 import os
-import streamlit as st
-
-st.write("Current working directory:", os.getcwd())
-st.write("Files in current directory:", os.listdir())
-
 
 # --- Load the trained model ---
-MODEL_PATH = "linear_regression_model_using_pickle.pkl"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "linear_regression_model_using_pickle.pkl")
+
+# Debug: Show current directory and files
+st.write("Current working directory:", os.getcwd())
+st.write("Files in current directory:", os.listdir())
 
 if not os.path.exists(MODEL_PATH):
     st.error(f"Model file not found at '{MODEL_PATH}'. Please make sure the model file is in the same folder as this app.")
