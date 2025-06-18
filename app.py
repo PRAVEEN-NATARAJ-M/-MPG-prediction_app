@@ -3,13 +3,13 @@ import pickle
 import numpy as np
 
 # Load the trained model using pickle
-with open("linear_regression_model_clean.pkl", "rb") as file:
+with open("linear_regression_model_using_pickle.pkl", "rb") as file:
     model = pickle.load(file)
 
-# Page configuration
+# --- Page Config ---
 st.set_page_config(page_title="MPG Predictor 🚗", page_icon="🚗", layout="centered")
 
-# Styling
+# --- Style ---
 st.markdown("""
     <style>
         .main {
@@ -25,9 +25,9 @@ st.markdown("""
             font-weight: bold;
         }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-# Sidebar
+# --- Sidebar ---
 st.sidebar.image("https://openclipart.org/image/800px/343980", use_container_width=True)
 st.sidebar.header("🔧 Instructions")
 st.sidebar.markdown("""
@@ -38,11 +38,11 @@ Enter vehicle specs on the main panel and click **Predict MPG**.
 st.sidebar.markdown("---")
 st.sidebar.caption("Made with ❤️ using Streamlit")
 
-# Title
+# --- Title ---
 st.title("🚗 MPG Prediction App")
 st.markdown("### Estimate your car's fuel efficiency with a few inputs!")
 
-# Input form
+# --- Input Form ---
 with st.form("mpg_form"):
     st.markdown("#### 🔢 Enter Vehicle Specifications")
     col1, col2 = st.columns(2)
@@ -58,6 +58,7 @@ with st.form("mpg_form"):
 
     submitted = st.form_submit_button("Predict MPG")
 
+# --- Prediction ---
 if submitted:
     input_features = np.array([[cylinders, displacement, horsepower, weight, acceleration]])
     prediction = model.predict(input_features)
@@ -65,4 +66,5 @@ if submitted:
 
     st.markdown("## 🎯 Prediction Result")
     st.metric(label="Estimated MPG", value=f"{mpg} miles/gallon")
+
     st.info("MPG is calculated based on input features using a Linear Regression model.")
