@@ -4,9 +4,10 @@ import numpy as np
 import os
 
 # --- Load the trained model ---
+# NOTE: Filename has a trailing space before '.pkl' to match your actual file
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "linear_regression_model_using_pickle .pkl")
 
-# Debug: Show current directory and files
+# Debug info
 st.write("Current working directory:", os.getcwd())
 st.write("Files in current directory:", os.listdir())
 
