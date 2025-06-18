@@ -1,14 +1,15 @@
 import streamlit as st
-import joblib
+import pickle
 import numpy as np
 
-# Load the trained model
-model = joblib.load("linear_regression_model.joblib")
+# Load the trained model using pickle
+with open("linear_regression_model_clean.pkl", "rb") as file:
+    model = pickle.load(file)
 
-# Page Config
+# Page configuration
 st.set_page_config(page_title="MPG Predictor 🚗", page_icon="🚗", layout="centered")
 
-# Style
+# Styling
 st.markdown("""
     <style>
         .main {
@@ -24,7 +25,7 @@ st.markdown("""
             font-weight: bold;
         }
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # Sidebar
 st.sidebar.image("https://openclipart.org/image/800px/343980", use_container_width=True)
@@ -41,7 +42,7 @@ st.sidebar.caption("Made with ❤️ using Streamlit")
 st.title("🚗 MPG Prediction App")
 st.markdown("### Estimate your car's fuel efficiency with a few inputs!")
 
-# Input Form
+# Input form
 with st.form("mpg_form"):
     st.markdown("#### 🔢 Enter Vehicle Specifications")
     col1, col2 = st.columns(2)
@@ -57,10 +58,9 @@ with st.form("mpg_form"):
 
     submitted = st.form_submit_button("Predict MPG")
 
-# Prediction
 if submitted:
-    features = np.array([[cylinders, displacement, horsepower, weight, acceleration]])
-    prediction = model.predict(features)
+    input_features = np.array([[cylinders, displacement, horsepower, weight, acceleration]])
+    prediction = model.predict(input_features)
     mpg = round(prediction[0], 2)
 
     st.markdown("## 🎯 Prediction Result")
