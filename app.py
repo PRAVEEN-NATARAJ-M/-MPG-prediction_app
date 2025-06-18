@@ -2,6 +2,11 @@ import streamlit as st
 import pickle
 import numpy as np
 import os
+import streamlit as st
+
+st.write("Current working directory:", os.getcwd())
+st.write("Files in current directory:", os.listdir())
+
 
 # --- Load the trained model ---
 MODEL_PATH = "linear_regression_model_using_pickle.pkl"
