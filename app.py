@@ -1,9 +1,16 @@
 import streamlit as st
 import pickle
 import numpy as np
+import os
 
-# Load the trained model using pickle
-with open("linear_regression_model_using_pickle.pkl", "rb") as file:
+# --- Load the trained model ---
+MODEL_PATH = "linear_regression_model_using_pickle.pkl"
+
+if not os.path.exists(MODEL_PATH):
+    st.error(f"Model file not found at '{MODEL_PATH}'. Please make sure the model file is in the same folder as this app.")
+    st.stop()
+
+with open(MODEL_PATH, "rb") as file:
     model = pickle.load(file)
 
 # --- Page Config ---
